@@ -16,7 +16,7 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_name(PATH_TO_CREDENTIAL_JSON, scope)
 client = gspread.authorize(creds)
 
-spreadsheet = client.open("LeetCode Top Interview 150")  # 作成済みスプレッドシート名
+spreadsheet = client.open("LeetCode Top Interview 150")
 sheet = spreadsheet.sheet1 
 
 sheet.append_row(["Title"])
@@ -44,14 +44,14 @@ for group in subgroups:
 cells = []
 for i, (title, link) in enumerate(zip(titles, links)):
     formula = f'=HYPERLINK("{link}", "{title}")'
-    cell = Cell(row=i + 1, col=1, value=formula)  # A列＝col=1
+    cell = Cell(row=i + 2, col=1, value=formula)  # A列＝col=1
     cells.append(cell)
 
 
 
 
 
-sheet.update_cells(cells)
+sheet.update_cells(cells, value_input_option="USER_ENTERED")
 
 # print(titles)
 # print(links)
