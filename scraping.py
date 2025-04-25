@@ -16,7 +16,7 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_name(PATH_TO_CREDENTIAL_JSON, scope)
 client = gspread.authorize(creds)
 
-spreadsheet = client.open("[Test]LeetCode Top Interview 150")  # 作成済みスプレッドシート名
+spreadsheet = client.open("LeetCode Top Interview 150")  # 作成済みスプレッドシート名
 sheet = spreadsheet.sheet1 
 
 sheet.append_row(["Title"])
