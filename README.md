@@ -13,3 +13,6 @@ Top Interview 150学習管理用スプレッドシートを作成します
 4. ライブラリをインストールする
 `pip install gspread gspread-formatting oauth2client selenium beautifulsoup4 python-dotenv`
 5. スクリプトを実行する
+
+## こんな感じ
+<img width="747" alt="Screenshot 2025-04-27 at 11 35 15" src="https://github.com/user-attachments/assets/261a8a95-6d57-47dc-83d2-afd5214a6d3c" />
