@@ -15,4 +15,4 @@ Top Interview 150学習管理用スプレッドシートを作成します
 5. スクリプトを実行する
 
 ## こんな感じ
-<img width="747" alt="Screenshot 2025-04-27 at 11 35 15" src="https://github.com/user-attachments/assets/261a8a95-6d57-47dc-83d2-afd5214a6d3c" />
+<img width="789" alt="Screenshot 2025-04-27 at 11 36 41" src="https://github.com/user-attachments/assets/f0f5fee8-a01e-4282-8b09-d83797ccecbd" />
