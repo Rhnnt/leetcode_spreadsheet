@@ -65,7 +65,7 @@ set_column_width(sheet, 'B', 80)
 # C列　ステータスのプルダウン
 status_range = f'C2:C{problems_len+1}'
 rule = DataValidationRule(
-    BooleanCondition('ONE_OF_LIST', ['やってない', '忘れた', '理解', '怪しい']),
+    BooleanCondition('ONE_OF_LIST', ['やってない!', '怪しい🤔', '理解💡']),
     showCustomUi=True
 )
 set_data_validation_for_cell_range(sheet, status_range, rule)
@@ -84,6 +84,9 @@ fmt = cellFormat(
 )
 
 format_cell_range(sheet, status_range, fmt)
+
+init_values = [['やってない!'] for _ in range(problems_len)]
+sheet.update(init_values, f'C2:C{problems_len+1}', value_input_option="USER_ENTERED")
 
 # D列　Last Attempted
 last_attempted_range = f'D2:D{problems_len+1}'
