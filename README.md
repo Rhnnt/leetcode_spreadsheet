@@ -1,5 +1,5 @@
 ## 概要
-Top Interview 150学習管理用スプレッドシートを作成します
+LeetCode Top Interview 150 の学習管理用スプレッドシートを作成します
 
 ## 使い方
 1.
