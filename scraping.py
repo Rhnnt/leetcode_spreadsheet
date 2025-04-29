@@ -23,8 +23,8 @@ client = gspread.authorize(creds)
 spreadsheet = client.open("LeetCode Top Interview 150")
 sheet = spreadsheet.sheet1 
 
-headers = ["Title", "Count", "Status", "Last Attempted"]
-sheet.update([headers], 'A1:D1')
+headers = ["Title", "Difficulty", "Count", "Status", "Last Attempted"]
+sheet.update([headers], 'A1:E1')
 
 driver = webdriver.Chrome()
 driver.get("https://leetcode.com/studyplan/top-interview-150/")
@@ -44,12 +44,14 @@ subgroups = json_data["props"]["pageProps"]["dehydratedState"]["queries"][0]["st
 # A列　ハイパーリンク
 titles = []
 links = []
+difficulties = []
 
 for group in subgroups:
     for q in group['questions']:
         titles.append(q['title'])
         link = f'https://leetcode.com/problems/{q['titleSlug']}'
         links.append(link)
+        difficulties.append(q['difficulty'])
 
 problems_len = len(titles)
 
@@ -57,13 +59,18 @@ formulas = [[f'=HYPERLINK("{link}", "{title}")'] for (title, link) in zip(titles
 sheet.update(formulas, f'A2:A{problems_len+1}', value_input_option="USER_ENTERED")
 set_column_width(sheet, 'A', 300)
 
-# B列　解いた回数
-count_values = [[0] for _ in range(problems_len)]
-sheet.update(count_values, f'B2:B{problems_len+1}', value_input_option="USER_ENTERED")
-set_column_width(sheet, 'B', 80)
+# B列　難易度
+diff_values = [[diff] for diff in difficulties]
+sheet.update(diff_values, f'B2:B{problems_len+1}', value_input_option="USER_ENTERED")
+set_column_width(sheet, 'B', 100)
 
-# C列　ステータスのプルダウン
-status_range = f'C2:C{problems_len+1}'
+# C列　解いた回数
+count_values = [[0] for _ in range(problems_len)]
+sheet.update(count_values, f'C2:C{problems_len+1}', value_input_option="USER_ENTERED")
+set_column_width(sheet, 'C', 80)
+
+# D列　ステータスのプルダウン
+status_range = f'D2:D{problems_len+1}'
 rule = DataValidationRule(
     BooleanCondition('ONE_OF_LIST', ['やってない!', '怪しい🤔', '理解💡']),
     showCustomUi=True
@@ -86,10 +93,10 @@ fmt = cellFormat(
 format_cell_range(sheet, status_range, fmt)
 
 init_values = [['やってない!'] for _ in range(problems_len)]
-sheet.update(init_values, f'C2:C{problems_len+1}', value_input_option="USER_ENTERED")
+sheet.update(init_values, f'D2:D{problems_len+1}', value_input_option="USER_ENTERED")
 
-# D列　Last Attempted
-last_attempted_range = f'D2:D{problems_len+1}'
+# E列　Last Attempted
+last_attempted_range = f'E2:E{problems_len+1}'
 
 date_rule = DataValidationRule(
     condition=BooleanCondition('DATE_IS_VALID'),
@@ -115,7 +122,7 @@ from datetime import datetime
 cur_datetime = datetime.now()
 cur_str_date = cur_datetime.strftime("%Y-%m-%d")
 last_attempted_values = [[cur_str_date] for _ in range(problems_len)]
-sheet.update(last_attempted_values, f'D2:D{problems_len+1}', value_input_option="USER_ENTERED")
+sheet.update(last_attempted_values, f'E2:E{problems_len+1}', value_input_option="USER_ENTERED")
 
 set_data_validation_for_cell_range(sheet, last_attempted_range, date_rule)
 format_cell_range(sheet, last_attempted_range, date_fmt)
