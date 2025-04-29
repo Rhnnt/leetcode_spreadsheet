@@ -15,4 +15,4 @@ LeetCode Top Interview 150 の学習管理用スプレッドシートを作成�
 5. スクリプトを実行する
 
 ## こんな感じ
-<img width="789" alt="Screenshot 2025-04-27 at 11 36 41" src="https://github.com/user-attachments/assets/f0f5fee8-a01e-4282-8b09-d83797ccecbd" />
+<img width="779" alt="Screenshot 2025-04-29 at 22 37 40" src="https://github.com/user-attachments/assets/63fd835b-a35a-4c2b-a2ba-066ed546fe23" />
